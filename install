@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+APP_NAME="Chrome Icon Update"
+
+BASEDIR=$(dirname $0)
+cd ${BASEDIR}
+
+ICON="[Desktop Entry]\n\
+Name=${APP_NAME}\n\
+Comment=Chrome Icons\n\
+Terminal=false\n\
+Exec=${BASEDIR}/start\n\
+TryExec=${BASEDIR}/start\n\
+Type=Application\n\
+Icon=${BASEDIR}/chrome-icon/icon.png\n\
+StartupWMClass=index.js"
+
+ICON_PATH=${HOME}/.local/share/applications/chrome-icon.desktop
+
+echo -e ${ICON} > ${ICON_PATH}
+zenity --info --title="Instalado com sucesso!" --text="${APP_NAME} instalado com sucesso!\n\nInstalado em: ${ICON_PATH}." --width="300" height="50"

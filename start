@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+BASEDIR=$(dirname $0)
+cd ${BASEDIR}
+
+if ! [[ -x "$(command -v node)" ]]; then
+    zenity --info --title="Falha ao iniciar" --text="Node JS não está instalado." --width="200" height="50"
+    exit
+fi
+
+node chrome-icon/index.js

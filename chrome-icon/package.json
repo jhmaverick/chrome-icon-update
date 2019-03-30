@@ -1,0 +1,8 @@
+{
+  "name": "chrome-icon-update",
+  "description": "Adiciona path completo para os icones do chrome",
+  "main": "index.js",
+  "dependencies": {
+    "fs-extra": "^7.0.1"
+  }
+}
