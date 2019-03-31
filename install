@@ -1,21 +1,29 @@
 #!/usr/bin/env bash
 
-APP_NAME="Chrome Icon Update"
+APP_NAME="Fix Chrome Apps"
+DESCRIPTION="Fix Chrome apps Icons"
+DIR="${HOME}/Applications/fix-chrome-apps"
+START_FILE="index.js"
+ICON_FILE="fix-chrome-apps/icon.png"
+ICON_PATH="${HOME}/.local/share/applications/fix-chrome-apps.desktop"
 
 BASEDIR=$(dirname $0)
 cd ${BASEDIR}
 
+if [[ ! -d ${DIR} ]]; then
+    mkdir -p ${DIR}
+    cp -r ${BASEDIR}/* ${DIR}
+fi
+
 ICON="[Desktop Entry]\n\
 Name=${APP_NAME}\n\
-Comment=Chrome Icons\n\
+Comment=${DESCRIPTION}\n\
+Exec=${DIR}/start\n\
+TryExec=${DIR}/start\n\
+Icon=${DIR}/${ICON_FILE}\n\
 Terminal=false\n\
-Exec=${BASEDIR}/start\n\
-TryExec=${BASEDIR}/start\n\
 Type=Application\n\
-Icon=${BASEDIR}/chrome-icon/icon.png\n\
-StartupWMClass=index.js"
-
-ICON_PATH=${HOME}/.local/share/applications/chrome-icon.desktop
+StartupWMClass=${START_FILE}"
 
 echo -e ${ICON} > ${ICON_PATH}
-zenity --info --title="Instalado com sucesso!" --text="${APP_NAME} instalado com sucesso!\n\nInstalado em: ${ICON_PATH}." --width="300" height="50"
+zenity --info --title="Instalado com sucesso!" --text="${APP_NAME} instalado com sucesso!\n\nInstalado em: ${DIR}." --width="300" height="50"

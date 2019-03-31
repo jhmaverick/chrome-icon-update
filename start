@@ -8,4 +8,4 @@ if ! [[ -x "$(command -v node)" ]]; then
     exit
 fi
 
-node chrome-icon/index.js
+node fix-chrome-apps/index.js
